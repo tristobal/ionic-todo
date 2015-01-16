@@ -23,10 +23,58 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories'])
 
   .state('app', {
     url: "/app",
+    abstract: true,
     controller: "TodoCtrl",
     templateUrl: "templates/menu.html"
+  })
+
+  .state('app.tasks', {
+    url: "/tasks",
+    views: {
+      'menuContent': {
+        controller: "TodoCtrl",
+        templateUrl: "templates/tasks.html"
+      }
+    }
+  })
+
+  /*.state('about', {
+    url: "/about",
+    controller: "TodoCtrl",
+    templateUrl: "templates/author.html"
+  });*/
+
+
+  .state('app.404', {
+    url: "/404",
+    views: {
+      'menuContent': {
+        controller: "TodoCtrl",
+        templateUrl: "templates/404.html"
+      }
+    }
+  })
+
+  .state('app.lorem', {
+    url: "/lorem",
+    views: {
+      'menuContent': {
+        controller: "TodoCtrl",
+        templateUrl: "templates/lorem.html"
+      }
+    }
+  })
+
+  .state('app.about', {
+    url: "/about",
+    views: {
+      'menuContent': {
+        controller: "TodoCtrl",
+        templateUrl: "templates/author.html"
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app');
+  $urlRouterProvider.otherwise('/app/404');
 });

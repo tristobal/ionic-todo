@@ -33,3 +33,14 @@ angular.module('todo.factories', [])
     }
   }
 })
+
+.factory('Author', function($http){
+  var urlBase = "http://api.randomuser.me";
+  var authorFactory = {};
+
+  authorFactory.getAuthor = function () {
+      return $http.get(urlBase);
+  };
+
+  return authorFactory;
+});

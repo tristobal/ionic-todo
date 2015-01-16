@@ -1,16 +1,20 @@
 <ion-side-menus>
 
+  <!-- CONTENIDO -->
   <ion-side-menu-content>
+
     <ion-header-bar class="bar-dark">
       <button class="button button-icon" ng-click="toggleProjects()">
         <i class="icon ion-navicon"></i>
       </button>
       <h1 class="title">{{activeProject.title}}</h1>
       <button class="button button-icon" ng-click="newTask()">
-      <i class="icon ion-compose"></i>
-  </button>
+        <i class="icon ion-compose"></i>
+      </button>
     </ion-header-bar>
-    <ion-content>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+    <!--ion-content name="menuContent">
         <ion-list>
           <ion-checkbox ng-repeat="task in activeProject.tasks"
                         ng-model="task.done"
@@ -18,23 +22,28 @@
                         ng-click="saveDone(task)">
             {{task.title}}
           </ion-checkbox>
-          <ion-item>
-            <pre ng-bind="activeProject.tasks | json"></pre> 
-          </ion-item>
         <ion-list>
-    </ion-content>
+    </ion-content-->
   </ion-side-menu-content>
 
+
+  <!-- MENU LATERAL -->
   <ion-side-menu side="left">
+  
     <ion-header-bar class="bar-dark">
       <h1 class="title">Projects</h1>
       <button class="button button-icon ion-plus" ng-click="newProject()"></button>
     </ion-header-bar>
+  
     <ion-content>
       <ion-list>
         <ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{ active: activeProject == project }">{{project.title}}</ion-item>
+        <ion-item menu-close href="#/app/about">About me</ion-item>
+        <ion-item ng-click="changeURL()">Lorem</ion-item>
       </ion-list>
+     
     </ion-content>
+  
   </ion-side-menu>
 
 </ion-side-menus>

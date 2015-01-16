@@ -1,0 +1,16 @@
+<ion-view view-title="{{activeProject.title}}">
+	<ion-content>
+		<ion-list>
+		  <ion-checkbox ng-repeat="task in activeProject.tasks"
+		                ng-model="task.done"
+		                ng-checked="task.done"
+		                ng-click="saveDone(task)">
+		    {{task.title}}
+		  </ion-checkbox>
+	    </ion-list>
+	    {{ activeProject  | json}} 
+	</ion-content>
+
+</ion-view>
+
+

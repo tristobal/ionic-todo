@@ -1,6 +1,6 @@
 angular.module('todo.controllers', [])
 
-.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate) {
+.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate, Author, $location) {
 
   // A utility function for creating a new project with the given projectTitle
   var createProject = function(projectTitle) {
@@ -30,7 +30,13 @@ angular.module('todo.controllers', [])
     $scope.activeProject = project;
     Projects.setLastActiveIndex(index);
     $ionicSideMenuDelegate.toggleLeft(false);
+    $location.path("/app/tasks");
+    $scope.$broadcast('cambioProyecto');
   };
+
+  $scope.$on('cambioProyecto',function() {
+      $scope.activeProject = $scope.projects[Projects.getLastActiveIndex()];
+  });
 
 
   // Create and load the Modal
@@ -87,4 +93,24 @@ angular.module('todo.controllers', [])
       }
     }
   });
+
+  $scope.author;
+  getAuthor();
+
+  function getAuthor() {
+    Author.getAuthor()
+          .success(function (randomUser) {
+              $scope.author = randomUser;
+          })
+          .error(function (error) {
+            console.log('Unable to load customer data: ' + error.message);
+            //$scope.status = 'Unable to load customer data: ' + error.message;
+          });
+  }
+  $scope.changeURL = function() {
+    //$scope.activeProject.title = "Lorem ipsum";
+    $location.path("/app/lorem");
+    //$scope.$apply();
+    $ionicSideMenuDelegate.toggleLeft(false);
+  }
 });

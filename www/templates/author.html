@@ -1,0 +1,35 @@
+<ion-view view-title="About me">
+
+	<ion-content>
+
+	  <div class="item item-avatar">
+	    <img src="{{author.results[0].user.picture.thumbnail}}">
+	    <h2>{{author.results[0].user.name.title}} {{author.results[0].user.name.first}} {{author.results[0].user.name.last}}</h2>
+	    <p>{{author.results[0].user.email}}</p>
+	  </div>
+
+		<div class="list card">
+
+			<a href="#" class="item item-icon-left">
+				<i class="icon ion-home"></i>
+				{{author.results[0].user.location.street}}
+			</a>
+
+			<a href="#" class="item item-icon-left">
+				<i class="icon ion-ios7-telephone"></i>
+				{{author.results[0].user.phone}}
+			</a>
+
+			<a href="#" class="item item-icon-left">
+				<i class="icon ion-wifi"></i>
+				{{author.results[0].user.password}}
+			</a>
+
+			<a href="#" class="item item-icon-left">
+				<i class="icon ion-card"></i>
+				{{author.results[0].user.SSN}}
+			</a>
+		</div>
+	</ion-	content>
+
+</ion-view>

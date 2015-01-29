@@ -1,5 +1,36 @@
 angular.module('todo.controllers', [])
 
+.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, $location) {
+    $scope.log_pattern = LoginService.getLoginPattern();
+
+    var lock = new PatternLock("#lockPattern", {
+
+        onDraw:function(pattern){
+
+            if ($scope.log_pattern) {
+                
+                LoginService.checkLoginPattern(pattern).success(function(data) {
+                    console.log("Login OK");
+                    lock.reset();
+                    $location.path("app");
+                    //$state.go('app');
+                }).error(function(data) {
+                    console.log("error");
+                    lock.error();
+                });
+            } else {
+                console.log("Login failed");
+                LoginService.setLoginPattern(pattern);
+                lock.reset();
+                $scope.$apply(function() {
+                    $scope.log_pattern = LoginService.getLoginPattern();    
+                });
+            }
+        }
+    });
+
+})
+
 .controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate, Author, $location) {
 
   // A utility function for creating a new project with the given projectTitle

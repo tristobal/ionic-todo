@@ -1,6 +1,6 @@
 angular.module('todo.controllers', [])
 
-.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, $location) {
+.controller('LoginCtrl', function($scope, LoginService, $state, $location) {
     $scope.log_pattern = LoginService.getLoginPattern();
 
     var lock = new PatternLock("#lockPattern", {
@@ -8,22 +8,20 @@ angular.module('todo.controllers', [])
         onDraw:function(pattern){
 
             if ($scope.log_pattern) {
-                
                 LoginService.checkLoginPattern(pattern).success(function(data) {
                     console.log("Login OK");
                     lock.reset();
-                    $location.path("app");
-                    //$state.go('app');
+                    $state.go('app.tasks');
                 }).error(function(data) {
                     console.log("error");
                     lock.error();
                 });
             } else {
-                console.log("Login failed");
+                console.log("Definiendo patron");
                 LoginService.setLoginPattern(pattern);
                 lock.reset();
                 $scope.$apply(function() {
-                    $scope.log_pattern = LoginService.getLoginPattern();    
+                    $scope.log_pattern = LoginService.getLoginPattern();
                 });
             }
         }
@@ -40,7 +38,6 @@ angular.module('todo.controllers', [])
     Projects.save($scope.projects);
     $scope.selectProject(newProject, $scope.projects.length-1);
   }
-
 
   // Load or initialize projects
   $scope.projects = Projects.all();

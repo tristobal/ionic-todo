@@ -27,6 +27,8 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories', 'todo.ser
     templateUrl: "templates/login.html"
   })
 
+  //...state of abstract:true. This isn't required, but you want to set this since you'd never go to this state directly,
+  // you'd always go to one of it's child states.
   .state('app', {
     url: "/app",
     abstract: true,

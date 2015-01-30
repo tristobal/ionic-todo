@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories', 'todo.services'])
+angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories'])//, 'todo.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,11 +21,11 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories', 'todo.ser
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  .state('login', {
-    url: "/login",
-    controller: "LoginCtrl",
-    templateUrl: "templates/login.html"
-  })
+  /*.state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })*/
 
   .state('app', {
     url: "/app",
@@ -43,13 +43,6 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories', 'todo.ser
       }
     }
   })
-
-  /*.state('about', {
-    url: "/about",
-    controller: "TodoCtrl",
-    templateUrl: "templates/author.html"
-  });*/
-
 
   .state('app.404', {
     url: "/404",
@@ -82,5 +75,5 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories', 'todo.ser
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/app');
 });

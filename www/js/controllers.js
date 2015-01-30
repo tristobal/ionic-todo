@@ -1,6 +1,6 @@
 angular.module('todo.controllers', [])
 
-/*.controller('LoginCtrl', function($scope, LoginService, $state, $location) {
+.controller('LoginCtrl', function($scope, LoginService, $state, $location) {
     $scope.log_pattern = LoginService.getLoginPattern();
 
     var lock = new PatternLock("#lockPattern", {
@@ -12,24 +12,23 @@ angular.module('todo.controllers', [])
                 LoginService.checkLoginPattern(pattern).success(function(data) {
                     console.log("Login OK");
                     lock.reset();
-                    $location.path("/app");
-                    //$state.go('app');
+                    $state.go('app.tasks');
                 }).error(function(data) {
                     console.log("error");
                     lock.error();
                 });
             } else {
-                console.log("Login failed");
+                console.log("Definiendo patron");
                 LoginService.setLoginPattern(pattern);
                 lock.reset();
                 $scope.$apply(function() {
-                    $scope.log_pattern = LoginService.getLoginPattern();    
+                    $scope.log_pattern = LoginService.getLoginPattern();
                 });
             }
         }
     });
 
-})*/
+})
 
 .controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate, Author, $location) {
 

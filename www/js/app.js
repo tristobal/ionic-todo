@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories'])//, 'todo.services'])
+angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories', 'todo.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,12 +21,14 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories'])//, 'todo
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  /*.state('login', {
+  .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
-  })*/
+  })
 
+  //...state of abstract:true. This isn't required, but you want to set this since you'd never go to this state directly,
+  // you'd always go to one of it's child states.
   .state('app', {
     url: "/app",
     abstract: true,
@@ -75,5 +77,5 @@ angular.module('todo', ['ionic', 'todo.controllers', 'todo.factories'])//, 'todo
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app');
+  $urlRouterProvider.otherwise('/login');
 });
